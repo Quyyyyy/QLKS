@@ -203,8 +203,8 @@ public class NguoiDungDAO extends DBContext{
         NguoiDungDAO a= new NguoiDungDAO();
         //NguoiDung b = new NguoiDung(3,"Nguyen Hoang Viet","Nam","Ha Dong","02345678","quản lý","030201040506","vietnh","12345678");
         //a.update(b); 
-        NguoiDung c = a.layTheoId(1);
-        System.out.println(a.layTheoTen("Phúc")); 
+        NguoiDung c = a.check("PhucDT12","12345678");
+        System.out.println(c); 
         //a.delete(1); 
     }
 }
