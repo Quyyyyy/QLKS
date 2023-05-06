@@ -78,7 +78,7 @@ public class LoginServlet extends HttpServlet {
         String pass = request.getParameter("pass");
         NguoiDungDAO d = new NguoiDungDAO();
         NguoiDung a = d.check(user, pass);
-        if(a==null){
+        if(a==null || user==""){
             request.setAttribute("error", "sai tai khoan or mat khau!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else{

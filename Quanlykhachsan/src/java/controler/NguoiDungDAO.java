@@ -167,13 +167,12 @@ public class NguoiDungDAO extends DBContext{
     
     public void delete(int idNguoiDung){
         
-        String sql="DELETE from users where id=?";
+        String sql="delete from users where id=?";
         try{
             
             PreparedStatement st = conn.prepareStatement(sql);
             st.setInt(1,idNguoiDung);
-            st.executeUpdate();
-             
+            st.executeUpdate();             
         }
         catch(SQLException e){
             System.out.println(e);
@@ -181,7 +180,7 @@ public class NguoiDungDAO extends DBContext{
     }
     
     public void update(NguoiDung nd){
-        String sql = "update users set hoten = ?,giotinh=?,diachi=?,sdt=?,chucvu=?,cccd=?,username=?,password=? where id=?";
+        String sql = "update users set hoten=?,giotinh=?,diachi=?,sdt=?,chucvu=?,cccd=?,username=?,password=? where id=?";
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, nd.getHoten());
@@ -192,6 +191,7 @@ public class NguoiDungDAO extends DBContext{
             ps.setString(6, nd.getCccd());
             ps.setString(7, nd.getTkhoan());
             ps.setString(8, nd.getPwd());
+            ps.setInt(9, nd.getId());
             ps.executeUpdate();
         }
         catch(SQLException e){

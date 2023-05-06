@@ -16,11 +16,13 @@ import model.DichVu;
  */
 public class DichvuDAO extends DBContext{
     public void themDichvu(DichVu d){
-        String sql = "insert into dichvu(ten,gia) values(?,?)";
+        String sql = "insert into dichvu(ten,gia,deleted) values(?,?,?)"; 
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, d.getTen());
             ps.setInt(2,d.getGia());
+            ps.setInt(3,d.getDeleted());
+            ps.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();
         }
@@ -29,7 +31,7 @@ public class DichvuDAO extends DBContext{
     public ArrayList<DichVu> layTatCa() {
         ArrayList<DichVu> list = new ArrayList<>();
 
-        String sql = "select * from dichvu";
+        String sql = "select * from dichvu where deleted=0";
 
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -39,6 +41,7 @@ public class DichvuDAO extends DBContext{
                 tmp.setId(rs.getInt("id")); 
                 tmp.setTen(rs.getString("ten"));
                 tmp.setGia(rs.getInt("gia"));
+                tmp.setDeleted(rs.getInt("deleted")); 
                 list.add(tmp);
             }
 
@@ -50,7 +53,7 @@ public class DichvuDAO extends DBContext{
     }
     
     public DichVu layTheoId(int idDV) {
-        String sql = "select * from dichvu where id= " + idDV;
+        String sql = "select * from dichvu where deleted=0 and id=" + idDV;
         DichVu tmp = new DichVu();
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -59,6 +62,7 @@ public class DichvuDAO extends DBContext{
                 tmp.setId(rs.getInt("id"));  
                 tmp.setGia(rs.getInt("gia")); 
                 tmp.setTen(rs.getString("ten"));
+                tmp.setDeleted(rs.getInt("deleted")); 
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -80,6 +84,7 @@ public class DichvuDAO extends DBContext{
                 tmp.setId(rs.getInt("id")); 
                 tmp.setTen(rs.getString("ten"));
                 tmp.setGia(rs.getInt("gia"));
+                tmp.setDeleted(rs.getInt("deleted")); 
                 list.add(tmp);
             }
 
@@ -92,7 +97,7 @@ public class DichvuDAO extends DBContext{
     
     public void delete(int idDV){
         
-        String sql="delete from dichvu where id=?";
+        String sql="update dichvu set deleted=1 where id=?";
         try{
             
             PreparedStatement st = conn.prepareStatement(sql);
@@ -106,12 +111,14 @@ public class DichvuDAO extends DBContext{
     }
     
     public void update(DichVu p){
-        String sql = "update dichvu set ten = ?,gia=? where id=?";
+        String sql = "update dichvu set ten = ?,gia=?,deleted=? where id=?";
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, p.getTen());
           
             ps.setInt(2, p.getGia());
+            ps.setInt(3, p.getDeleted());
+            ps.setInt(4, p.getId());
             ps.executeUpdate();
         }
         catch(SQLException e){

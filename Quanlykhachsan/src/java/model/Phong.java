@@ -6,22 +6,24 @@ package model;
 
 /**
  *
- * @author HP
+ * @author  
  */
 public class Phong {
     private int id;
     private Loaiphong lp;
     private String tenphong;
     private String status;
+    private int deleted;
 
     public Phong() {
     }
 
-    public Phong(int id, Loaiphong lp, String tenphong, String status) {
+    public Phong(int id, Loaiphong lp, String tenphong, String status, int deleted) {
         this.id = id;
         this.lp = lp;
         this.tenphong = tenphong;
         this.status = status;
+        this.deleted = deleted;
     }
 
     public int getId() {
@@ -55,8 +57,17 @@ public class Phong {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public int getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
+    }
     
     public String toString(){
-        return "Phong{ id = " + id + ", Loaiphong = " + lp + ", tenphong = " + tenphong +", status = " + status + "}";
+        return "Phong{ id = " + id + ", Loaiphong = " + lp + ", tenphong = " + 
+                tenphong +", status = " + status + ", deleted=" + deleted + "}";
     }
 }

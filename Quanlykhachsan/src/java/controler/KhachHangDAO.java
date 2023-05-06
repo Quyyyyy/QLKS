@@ -16,14 +16,14 @@ import model.KhachHang;
  */
 public class KhachHangDAO extends DBContext{
     public void themKhachHang(KhachHang nd){
-        String sql = "insert into khachhang(hoten,sdt,diachi,cccd) values(?,?,?,?)";
+        String sql = "insert into khachhang(hoten,sdt,diachi,cccd,deleted) values(?,?,?,?,?)";
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, nd.getHoten());
             ps.setString(2, nd.getSdt());
             ps.setString(3, nd.getDiachi());
             ps.setString(4, nd.getCccd());
-            
+            ps.setInt(5, nd.getDeleted());
             ps.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();
@@ -33,7 +33,7 @@ public class KhachHangDAO extends DBContext{
     public ArrayList<KhachHang> layTatCa() {
         ArrayList<KhachHang> list = new ArrayList<>();
 
-        String sql = "select * from khachhang";
+        String sql = "select * from khachhang where deleted=0";
 
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -45,6 +45,7 @@ public class KhachHangDAO extends DBContext{
                 tmp.setSdt(rs.getString("sdt"));
                 tmp.setDiachi(rs.getString("diachi"));
                 tmp.setCccd(rs.getString("cccd"));
+                tmp.setDeleted(rs.getInt("deleted")); 
                 list.add(tmp);
             }
 
@@ -56,7 +57,7 @@ public class KhachHangDAO extends DBContext{
     }
     
     public KhachHang layTheoId(int idKhachHang) {
-        String sql = "select * from khachhang where id= " + idKhachHang;
+        String sql = "select * from khachhang where deleted=0 and id= " + idKhachHang;
         KhachHang tmp = new KhachHang();
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -67,6 +68,7 @@ public class KhachHangDAO extends DBContext{
                 tmp.setSdt(rs.getString("sdt")); 
                 tmp.setDiachi(rs.getString("diachi"));               
                 tmp.setCccd(rs.getString("cccd"));
+                tmp.setDeleted(rs.getInt("deleted")); 
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -102,13 +104,12 @@ public class KhachHangDAO extends DBContext{
     
     public void delete(int idKhachHang){
         
-        String sql="delete from khachhang where id=?";
+        String sql="update khachhang set deleted = 1 where id=?";
         try{
             
             PreparedStatement st = conn.prepareStatement(sql);
             st.setInt(1,idKhachHang);
-            st.executeUpdate();
-             
+            st.executeUpdate();             
         }
         catch(SQLException e){
             System.out.println(e);
@@ -116,7 +117,7 @@ public class KhachHangDAO extends DBContext{
     }
     
     public void update(KhachHang nd){
-        String sql = "update khachhang set hoten = ?,diachi=?,sdt=?,cccd=? where id=?";
+        String sql = "update khachhang set hoten = ?,diachi=?,sdt=?,cccd=?,deleted=? where id=?";
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, nd.getHoten());
@@ -125,6 +126,8 @@ public class KhachHangDAO extends DBContext{
             ps.setString(3, nd.getSdt());
            
             ps.setString(4, nd.getCccd());
+            ps.setInt(5, nd.getDeleted());
+            ps.setInt(6, nd.getId());
             ps.executeUpdate();
         }
         catch(SQLException e){
@@ -140,6 +143,8 @@ public class KhachHangDAO extends DBContext{
         for(KhachHang i:l){
             System.out.println(i);
         }
+        a.delete(1);
+        
         //a.delete(2);
         //System.out.println(b);
     }

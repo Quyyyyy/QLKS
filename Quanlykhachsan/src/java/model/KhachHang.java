@@ -14,16 +14,18 @@ public class KhachHang {
     private String sdt;
     private String diachi;
     private String cccd;
+    private int deleted;
 
     public KhachHang() {
     }
 
-    public KhachHang(int id, String hoten, String sdt, String diachi, String cccd) {
+    public KhachHang(int id, String hoten, String sdt, String diachi, String cccd, int deleted) {
         this.id = id;
         this.hoten = hoten;
         this.sdt = sdt;
         this.diachi = diachi;
         this.cccd = cccd;
+        this.deleted = deleted;
     }
 
     public int getId() {
@@ -65,8 +67,18 @@ public class KhachHang {
     public void setCccd(String cccd) {
         this.cccd = cccd;
     }
+
+    public int getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
+    }
+    
     
     public String toString(){
-        return "KhachHang{" + "id=" + id + ", hoten=" + hoten + ", sdt=" + sdt + ", diachi=" + diachi + ", cccd=" + cccd + "}";
+        return "KhachHang{" + "id=" + id + ", hoten=" + hoten + ", sdt=" + sdt +
+                ", diachi=" + diachi + ", cccd=" + cccd + ", deleted=" + deleted +"}";
     }
 }

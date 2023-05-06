@@ -53,7 +53,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="service">
               <i class="bi bi-folder"></i>
               Quản lý dịch vụ
             </a>
@@ -65,13 +65,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="customer">
               <i class="bi bi-people-fill"></i>
               Quản lý khách hàng
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="room">
+              <i class="bi bi-house-door-fill"></i>
+              Quản lý loại phòng
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="room">
               <i class="bi bi-house-door-fill"></i>
               Quản lý phòng
             </a>
@@ -102,9 +108,9 @@
     <!-- hien thi tung chuc nang cua trang quan tri START-->
          <div class="row" style="margin-top: 20px;">
 	<div class="col-md-12  table-responsive">
-		<h3>Quản lý người dùng</h3>
+		<h3>Quản lý nhân viên</h3>
 
-        <a href="editor.php"><button class="btn btn-success">Thêm Tài Khoản</button></a>
+        <a href="addUser.jsp"><button class="btn btn-success">Thêm Nhân Viên</button></a>
 
         <table class="table table-bordered table-hover" 
             style="margin-top: 20px;">
@@ -132,11 +138,11 @@
                     <td><%= i.getDiachi()%></td>
                     <td><%= i.getChucvu()%></td>
                     <th style="width: 50px;">
-                        <a href = "suauser?id=<%= i.getId()%>"><button class="btn btn-warning">Sửa</button></a>
+                        <a href = "capnhatuser?id=<%= i.getId()%>"><button class="btn btn-warning">Sửa</button></a>
                     </th>
                     <th style="width: 50px;">
-<!--                    if($user['id'] != $item['id'] && $item['role_id'] != 1){-->
-                        <button onclick ="deleteUser(<%= i.getId()%>)" class="btn btn-danger">Xóa</button>                    
+                        <a href = "xoauser?id=<%= i.getId()%>"><button class="btn btn-danger">Xóa</button></a>
+<!--                        <button onclick ="deleteUser(<%= i.getId()%>)" class="btn btn-danger">Xóa</button>                    -->
                     </th>
                 </tr>
             <%
@@ -150,5 +156,12 @@
     </main>
   </div>
 </div>
+<script type = "text/javascript">
+         function deleteUser(id){
+             if(confirm("ban co muon xoa nguoi dung khong")){
+                 window.location = "xoauser?idNguoiDung="+id;
+             }
+         }
+</script>
 </body>
 </html>

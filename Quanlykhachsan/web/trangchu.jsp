@@ -51,7 +51,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="service">
               <i class="bi bi-folder"></i>
               Quản lý dịch vụ
             </a>
@@ -63,13 +63,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="customer">
               <i class="bi bi-people-fill"></i>
               Quản lý khách hàng
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="room">
+              <i class="bi bi-house-door-fill"></i>
+              Quản lý loại phòng
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="room">
               <i class="bi bi-house-door-fill"></i>
               Quản lý phòng
             </a>

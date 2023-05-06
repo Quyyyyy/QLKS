@@ -12,14 +12,16 @@ public class DichVu {
     private int id;
     private String ten;
     private int gia;
+    private int deleted;
 
     public DichVu() {
     }
 
-    public DichVu(int id, String ten, int gia) {
+    public DichVu(int id, String ten, int gia, int deleted) {
         this.id = id;
         this.ten = ten;
         this.gia = gia;
+        this.deleted = deleted;
     }
 
     public int getId() {
@@ -45,8 +47,16 @@ public class DichVu {
     public void setGia(int gia) {
         this.gia = gia;
     }
+
+    public int getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
+    }
     
     public String toString(){
-        return "DichVu{" + "id=" + id + ", ten=" + ten + ", gia=" + gia + "}";
+        return "DichVu{" + "id=" + id + ", ten=" + ten + ", gia=" + gia + ", deleted=" + deleted +"}";
     }
 }

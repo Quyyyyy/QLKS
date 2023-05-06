@@ -1,6 +1,6 @@
 <%-- 
-    Document   : updateCustomer
-    Created on : May 5, 2023, 8:45:07 PM
+    Document   : updateUser
+    Created on : May 6, 2023, 12:16:50 AM
     Author     : HP
 --%>
 
@@ -21,13 +21,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
 
   <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-  <!-- Popper JS -->
+   Popper JS 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-  <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+   Latest compiled JavaScript 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
 
 </head>
 <body>
@@ -64,13 +64,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="customer">
               <i class="bi bi-people-fill"></i>
               Quản lý khách hàng
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="room">
+              <i class="bi bi-house-door-fill"></i>
+              Quản lý loại phòng
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="room">
               <i class="bi bi-house-door-fill"></i>
               Quản lý phòng
             </a>
@@ -102,56 +108,57 @@
       
 <div class="row" style="margin-top: 20px;">
 	<div class="col-md-12  table-responsive">
-		<h3>Sửa Thông Tin Người Dùng</h3>
+		<h3>Cập Nhật Thông Tin Nhân Viên</h3>
 
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4 style="color:red" class="text-center"></h4>
             </div>
-            <%
-                if(request.getAttribute("sua")!=null){
-                    NguoiDung a = (NguoiDung)request.getAttribute("sua");
-            %>
             <div class="panel-body">
-                <form method="post" onsubmit="return validateForm();">
+                <%
+                if(request.getAttribute("sua")!=null){
+                    NguoiDung i = (NguoiDung)request.getAttribute("sua");
+                %>
+                <form action="capnhatuser" method="post">
+                    <input type="text" name="idNguoiDung" value="<%= i.getId()%>" hidden="true">
                     <div class="form-group">
                       <label for="usr">Họ & Tên:</label>
-                      <input required="true" type="text" class="form-control" id="usr" name="hoten" value="<%= a.getHoten()%>">
-<!--                      <input type="text" name="id" value="<?=$id?>" hidden="true">-->
+                      <input  type="text" class="form-control"  name="hoten" value="<%= i.getHoten()%>">
                     </div>
                     <div class="form-group">
-                      <label for="email">Giới tính</label>
-                      <input required="true" type="text" class="form-control" id="email" name="gioitinh" value="<%= a.getGioitinh()%>">
+                      <label for="gioitinh">Giới tính</label>
+                      <input type="text" class="form-control" name="gioitinh" value="<%= i.getGioitinh()%>">
                     </div>
                     <div class="form-group">
                       <label for="phone_number">Số Điện Thoại:</label>
-                      <input required="true" type="tel" class="form-control" id="phone_number" name="sdt" value="<%= a.getSdt()%>">
+                      <input type="tel" class="form-control"  name="sdt" value="<%= i.getSdt()%>">
                     </div>
                     <div class="form-group">
                       <label for="address">Địa Chỉ:</label>
-                      <input type="text" class="form-control" id="address" name="diachi" value="<%= a.getDiachi()%>">
+                      <input type="text" class="form-control"  name="diachi" value="<%= i.getDiachi()%>">
                     </div>
                     <div class="form-group">
                       <label for="usr">Chức vụ:</label>
-                      <input required="true" type="text" class="form-control" id="usr" name="chucvu" value="<%= a.getChucvu()%>">
+                      <input type="text" class="form-control"  name="chucvu" value="<%= i.getChucvu()%>">
                     </div>
                     <div class="form-group">
                       <label for="confirmation_pwd">Căn cước công dân:</label>
-                      <input type="text" class="form-control" id="ccd" name="cccd" value="<%= a.getCccd()%>"> 
+                      <input type="text" class="form-control"  name="cccd" value="<%= i.getCccd()%>"> 
                     </div>
                     <div class="form-group">
                       <label for="usr">User name:</label>
-                      <input type="text" class="form-control" id="usr" name="username" value="<%= a.getTkhoan()%>"> 
+                      <input type="text" class="form-control"  name="username" value="<%= i.getTkhoan()%>"> 
                     </div>
                     <div class="form-group">
                       <label for="pwd">Mật Khẩu: </label>
-                      <input class="form-control" type="password" id="pwd" name="password" value="<%=a.getPwd()%>"> 
+                      <input type="text" class="form-control" name="password" value="<%= i.getPwd()%>"> 
                     </div>
-                    <button class="btn btn-success">Cập Nhật</button>
+<!--                    <input type="submit" class="btn btn-success" value="xác nhận">-->
+                    <button type="submit" class="btn btn-success">Cập Nhật</button>
                 </form>
-                    <%
-                        }
-                    %>
+                     <%
+                }
+            %>
             </div>
         </div>
 

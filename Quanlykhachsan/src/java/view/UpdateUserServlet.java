@@ -18,7 +18,7 @@ import model.NguoiDung;
  *
  * @author HP
  */
-@WebServlet(name = "UpdateUserServlet", urlPatterns = {"/suauser"})
+@WebServlet(name = "UpdateUserServlet", urlPatterns = {"/capnhatuser"})
 public class UpdateUserServlet extends HttpServlet {
 
     /**
@@ -59,7 +59,7 @@ public class UpdateUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id_raw = request.getParameter("id"); 
+        String id_raw = request.getParameter("id");
         try{
             int id = Integer.parseInt(id_raw);
             NguoiDungDAO a = new NguoiDungDAO();
@@ -83,22 +83,23 @@ public class UpdateUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id_raw = request.getParameter("id");
+        request.setCharacterEncoding("UTF-8"); 
+        String id_raw = request.getParameter("idNguoiDung");
         String hoten = request.getParameter("hoten");
         String gioitinh = request.getParameter("gioitinh");
         String sdt = request.getParameter("sdt");
         String diachi = request.getParameter("diachi");
-        String chucvu = request.getParameter("chuvu");
+        String chucvu = request.getParameter("chucvu");
         String cccd = request.getParameter("cccd");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         int id;
         try{
             id = Integer.parseInt(id_raw);
-            NguoiDungDAO a =new NguoiDungDAO();
+            NguoiDungDAO a = new NguoiDungDAO();
             NguoiDung b = new NguoiDung(id,hoten,gioitinh,diachi,sdt,chucvu,cccd,username,password);
             a.update(b);
-            response.sendRedirect("user");
+            response.sendRedirect("user"); 
         } catch(NumberFormatException e){
             
         }

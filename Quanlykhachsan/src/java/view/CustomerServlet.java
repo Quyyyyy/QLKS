@@ -4,13 +4,16 @@
  */
 package view;
 
+import controler.KhachHangDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.KhachHang;
 
 /**
  *
@@ -57,7 +60,10 @@ public class CustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        KhachHangDAO a = new KhachHangDAO();
+        ArrayList<KhachHang> l = a.layTatCa();
+        request.setAttribute("data", l);
+        request.getRequestDispatcher("customer.jsp").forward(request, response); 
     }
 
     /**
