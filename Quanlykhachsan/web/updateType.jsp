@@ -1,12 +1,12 @@
 <%-- 
-    Document   : updateCus
-    Created on : May 6, 2023, 3:17:11 AM
+    Document   : updateType
+    Created on : May 6, 2023, 8:25:25 PM
     Author     : HP
 --%>
 
-<%@page import="model.KhachHang"%>
+<%@page import="model.Loaiphong"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
 <head>
   <title>Quản lý khách sạn</title>
@@ -108,7 +108,7 @@
       
 <div class="row" style="margin-top: 20px;">
 	<div class="col-md-12  table-responsive">
-		<h3>Thêm Khách Hàng</h3>
+		<h3>Cập Nhật Loại Phòng</h3>
 
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -116,33 +116,30 @@
             </div>
             <div class="panel-body">
                 <%
-                    if(request.getAttribute("sua")!=null){
-                        KhachHang a = (KhachHang) request.getAttribute("sua");
-                    
+                    if(request.getAttribute("data")!=null){
+                       Loaiphong a = (Loaiphong)request.getAttribute("data");
                 %>
-                <form action="suacustomer" method="post">
-                    <input type="text" name="id" value="<%=a.getId()%>" hidden="true">
+                <form action="suatype" method="post">
+                    <input type="text" name="id" value="<%= a.getId()%>" hidden="true">
                     <div class="form-group">
-                      <label for="usr">Họ & Tên:</label>
-                      <input  type="text" class="form-control" id="usr" name="hoten" value="<%= a.getHoten()%>">
+                      <label for="tenloai">Tên Loại:</label>
+                      <input  type="text" class="form-control" name="tenloai" value="<%= a.getTenloai()%>">
                     </div>
                     <div class="form-group">
-                      <label for="phone_number">Số Điện Thoại:</label>
-                      <input type="tel" class="form-control" id="phone_number" name="sdt" value="<%= a.getSdt()%>">
+                      <label for="songuoi">Số Người:</label>
+                      <input type="text" class="form-control" name="songuoi" value="<%= a.getSonguoi()%>">
                     </div>
                     <div class="form-group">
-                      <label for="address">Địa Chỉ:</label>
-                      <input type="text" class="form-control" id="address" name="diachi" value="<%= a.getDiachi()%>">
+                      <label for="sogiuong">Số Giường:</label>
+                      <input type="text" class="form-control" name="sogiuong" value="<%= a.getSogiuong()%>">
                     </div>
                     <div class="form-group">
-                      <label for="confirmation_pwd">Căn cước công dân:</label>
-                      <input type="text" class="form-control" id="ccd" name="cccd" value="<%= a.getCccd()%>"> 
+                      <label for="dongia">Đơn Giá:</label>
+                      <input type="text" class="form-control" name="dongia" value="<%= a.getDongia()%>"> 
                     </div>
                     <button type="submit" class="btn btn-success">Cập Nhật</button>
                 </form>
-                <%
-                    }
-                %>
+                <%}%>
             </div>
         </div>
 

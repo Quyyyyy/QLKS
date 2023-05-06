@@ -72,7 +72,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="room">
+            <a class="nav-link" href="type">
               <i class="bi bi-house-door-fill"></i>
               Quản lý loại phòng
             </a>

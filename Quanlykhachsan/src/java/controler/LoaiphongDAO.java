@@ -16,7 +16,7 @@ import model.Loaiphong;
  */
 public class LoaiphongDAO extends DBContext{
     public void themLoai(Loaiphong lp){
-        String sql = "insert into loaiphog(tenloai,songuoi,sogiuong,dongia) values(?,?,?,?)";
+        String sql = "insert into loaiphong(tenloai,songuoi,sogiuong,dongia) values(?,?,?,?)";
         try{
            PreparedStatement ps = conn.prepareStatement(sql);
            ps.setString(1,lp.getTenloai());
@@ -98,6 +98,7 @@ public class LoaiphongDAO extends DBContext{
             ps.setInt(3, lp.getSogiuong());
            
             ps.setInt(4, lp.getDongia());
+            ps.setInt(5, lp.getId()); 
             ps.executeUpdate();
         }
         catch(SQLException e){
