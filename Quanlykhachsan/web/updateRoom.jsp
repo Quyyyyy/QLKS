@@ -54,13 +54,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="service">
               <i class="bi bi-folder"></i>
               Quản lý dịch vụ
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="book">
               <i class="bi bi-file-earmark-text"></i>
               Quản lý đặt phòng
             </a>
@@ -90,13 +90,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="pay">
               <i class="bi bi-currency-dollar"></i>
               Quản lý thanh toán
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="statitis">
               <i class="bi bi-file-earmark-text-fill"></i>
               Quản lý thống kê
             </a>
@@ -142,7 +142,7 @@
                                     } else{
 
                             %>
-                                 <option value="<%= i.getId()%>"><%= i.getTenloai()%></option>
+                                <option value="<%= i.getId()%>"><%= i.getTenloai()%></option>
                             <%
                                    }
                                 }
@@ -151,7 +151,17 @@
                     </div>
                     <div class="form-group">
                       <label for="status">Trạng Thái:</label>
-                      <input type="text" class="form-control" id="status" name="status" value="<%= a.getStatus()%>">
+<!--                      <input type="text" class="form-control" id="status" name="status" value="<%= a.getStatus()%>">-->
+                      <select class="form-control" name="status" id="loaiphong" required="true">
+                            <option><%= a.getStatus()%></option>
+                            <% 
+                                 if(a.getStatus().equals("no action")){
+                             %>
+                                <option selected value="action">action</option>
+                             <% }else{ %>
+                                <option value="no action">no action</option> 
+                            <% } %>
+                      </select>
                     </div>
                     <button type="submit" class="btn btn-success">Cập Nhật</button>
                 </form>

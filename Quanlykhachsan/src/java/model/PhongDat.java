@@ -16,11 +16,12 @@ public class PhongDat {
     private int Songaythuco;
     private String created_at;
     private String updated_at;
+    private int status;
 
     public PhongDat() {
     }
 
-    public PhongDat(int id, KhachHang kh, String Ngaydat, String Ngaytra, int Songaythuco, String created_at, String updated_at) {
+    public PhongDat(int id, KhachHang kh, String Ngaydat, String Ngaytra, int Songaythuco, String created_at, String updated_at,int status) {
         this.id = id;
         this.kh = kh;
         this.Ngaydat = Ngaydat;
@@ -28,6 +29,7 @@ public class PhongDat {
         this.Songaythuco = Songaythuco;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.status = status;
     }
 
     public int getId() {
@@ -85,9 +87,17 @@ public class PhongDat {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
     
     public String toString(){
         return "PhongDat{ id = " + id + ", KhachHang = " + kh + ", Ngaydat = " + Ngaydat + ", Ngaytra = " + Ngaytra +
-                ", songaythuco = " + Songaythuco + ", created_at = " + created_at + ", updated_at = " + updated_at +"}";
+                ", songuoio = " + Songaythuco + ", created_at = " + created_at + ", updated_at = " + updated_at + ", status=" + status +"}";
     }
 }

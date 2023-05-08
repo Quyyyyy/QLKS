@@ -89,6 +89,36 @@ public class PhongDAO extends DBContext{
         }
     }
     
+    public void datp(int id){
+        
+        String sql="update phong set status='action' where id=?";
+        try{
+            
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1,id);
+            st.executeUpdate();
+             
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    
+    public void payp(int id){
+        
+        String sql="update phong set status='no action' where id=?";
+        try{
+            
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1,id);
+            st.executeUpdate();
+             
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    
     public void update(Phong p){
         String sql = "update phong set id_l=?,tenphong=?,status=?,deleted=? where id=?";
         try{

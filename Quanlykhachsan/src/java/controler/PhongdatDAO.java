@@ -18,16 +18,16 @@ import model.PhongDat;
  */
 public class PhongdatDAO extends DBContext{
     public void themPhongdat(PhongDat pd){
-        String sql = "insert into datphong(id_kh,Ngaydat,Ngaytra,Songaythuco,created_at,updated_at) values(?,?,?,?,?,?)";
+        String sql ="insert into datphong(id_kh,Ngaydat,Ngaytra,Songuoio,created_at,updated_at,status) values(?,?,?,?,?,?,?)";
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, pd.getKh().getId());
-            SimpleDateFormat df = new SimpleDateFormat("mm:HH dd/MM/yyyy");
             ps.setString(2, pd.getNgaydat());
             ps.setString(3, pd.getNgaytra());
             ps.setInt(4, pd.getSongaythuco());
-            ps.setString(5, df.format(new Date()));
-            ps.setString(6, df.format(new Date()));
+            ps.setString(5, pd.getCreated_at());
+            ps.setString(6, pd.getUpdated_at());
+            ps.setInt(7, pd.getStatus());
             ps.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();
@@ -49,9 +49,10 @@ public class PhongdatDAO extends DBContext{
                 pd.setKh(kh.layTheoId(rs.getInt("id_kh")));
                 pd.setNgaydat(rs.getString("Ngaydat"));
                 pd.setNgaytra(rs.getString("Ngaytra"));
-                pd.setSongaythuco(rs.getInt("Songaythuco"));
+                pd.setSongaythuco(rs.getInt("Songuoio"));
                 pd.setCreated_at(rs.getString("created_at"));
                 pd.setUpdated_at(rs.getString("updated_at"));
+                pd.setStatus(rs.getInt("status")); 
                 list.add(pd);
             }
         } catch(SQLException e){
@@ -72,9 +73,10 @@ public class PhongdatDAO extends DBContext{
                 pd.setKh(kh.layTheoId(rs.getInt("id_kh")));
                 pd.setNgaydat(rs.getString("Ngaydat"));
                 pd.setNgaytra(rs.getString("Ngaytra"));
-                pd.setSongaythuco(rs.getInt("Songaythuco"));
+                pd.setSongaythuco(rs.getInt("Songuoio"));
                 pd.setCreated_at(rs.getString("created_at"));
                 pd.setUpdated_at(rs.getString("updated_at"));
+                pd.setStatus(rs.getInt("status")); 
             }
         } catch(SQLException e){
             System.out.println(e);
@@ -83,7 +85,7 @@ public class PhongdatDAO extends DBContext{
     }
     
     public void update(PhongDat pd){
-        String sql = "update datphong set id_kh=?,Ngaydat=?,Ngaytra=?,Songaythuco=?,created_at=?,updated_at=?";
+        String sql = "update datphong set id_kh=?,Ngaydat=?,Ngaytra=?,Songuoio=?,created_at=?,updated_at=?,status=?";
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, pd.getKh().getId());
@@ -92,8 +94,24 @@ public class PhongdatDAO extends DBContext{
             ps.setInt(4, pd.getSongaythuco());
             ps.setString(5, pd.getCreated_at());
             ps.setString(6, pd.getUpdated_at());
-          
+            ps.setInt(7, pd.getStatus()); 
+            
             ps.executeUpdate();
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    
+    public void pay(int id){
+        
+        String sql="update datphong set status=1 where id=?";
+        try{
+            
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1,id);
+            st.executeUpdate();
+             
         }
         catch(SQLException e){
             System.out.println(e);
@@ -101,6 +119,6 @@ public class PhongdatDAO extends DBContext{
     }
     public static void main(String[] args) {
         PhongdatDAO p = new PhongdatDAO();
-        System.out.println(p.layTheoId(1)); 
+        System.out.println(p.layTheoId(1));  
     }
 }

@@ -53,13 +53,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="service">
               <i class="bi bi-folder"></i>
               Quản lý dịch vụ
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="book">
               <i class="bi bi-file-earmark-text"></i>
               Quản lý đặt phòng
             </a>
@@ -89,13 +89,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="pay">
               <i class="bi bi-currency-dollar"></i>
               Quản lý thanh toán
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="statitis">
               <i class="bi bi-file-earmark-text-fill"></i>
               Quản lý thống kê
             </a>

@@ -60,13 +60,14 @@ public class DtphongctDAO extends DBContext{
         return list;
     }
     
-    public dtphong_ct layTheoIdpd(int id){
-        dtphong_ct dpct = new dtphong_ct();
+    public ArrayList<dtphong_ct> layTheoIdpd(int id){
+        ArrayList<dtphong_ct> list = new ArrayList<>();
         String sql = "select * from dtphong_ct where id_dp =" + id;
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
+                dtphong_ct dpct = new dtphong_ct(); 
                 dpct.setId(rs.getInt("id"));
                 PhongdatDAO pd = new PhongdatDAO();
                 dpct.setPd(pd.layTheoId(rs.getInt("id_dp")));
@@ -75,12 +76,13 @@ public class DtphongctDAO extends DBContext{
                 dpct.setSongayo(rs.getInt("songayo"));
                 dpct.setDongia(rs.getInt("dongia"));
                 dpct.setThanhtien(rs.getInt("thanhtien"));
-                dpct.setNgay(rs.getString("ngay")); 
+                dpct.setNgay(rs.getString("ngay"));
+                list.add(dpct);
             }
         } catch(SQLException e){
             System.out.println(e);
         }
-        return dpct;
+        return list;
     }
     
     public void update(dtphong_ct dp){

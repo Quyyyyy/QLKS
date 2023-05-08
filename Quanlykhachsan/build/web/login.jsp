@@ -25,7 +25,6 @@
           <div class="form">          
             <input type="text" name="user" class="form-field animation a3" placeholder="User Name">
             <input type="password" name="pass" class="form-field animation a4" placeholder="Password">
-            <p class="animation a5"><a href="login.html">Forgot Password</a></p>
             <button type="submit" class="animation a6"><a>LOGIN</a></button> 
           </div>
         </form>

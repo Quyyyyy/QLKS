@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import model.NguoiDung;
 
 /**
@@ -205,6 +207,11 @@ public class NguoiDungDAO extends DBContext{
         //a.update(b); 
         NguoiDung c = a.check("PhucDT12","12345678");
         System.out.println(c); 
+        Date date=new Date();   
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(date); 
+        System.out.println(c1.getTime().getTime()); 
+        
         //a.delete(1); 
     }
 }

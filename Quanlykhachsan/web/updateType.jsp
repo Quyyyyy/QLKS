@@ -88,13 +88,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="pay">
               <i class="bi bi-currency-dollar"></i>
               Quản lý thanh toán
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="statitis">
               <i class="bi bi-file-earmark-text-fill"></i>
               Quản lý thống kê
             </a>
