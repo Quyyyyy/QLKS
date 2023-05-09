@@ -1,9 +1,11 @@
 <%-- 
-    Document   : trangchu
-    Created on : May 5, 2023, 12:42:23 AM
+    Document   : statitis
+    Created on : May 8, 2023, 10:40:08 PM
     Author     : HP
 --%>
 
+<%@page import="model.PhongDat"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -104,6 +106,60 @@
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <!-- hien thi tung chuc nang cua trang quan tri START-->
+    <div class="row" style="margin-top: 20px;">
+	<div class="col-md-12  table-responsive">
+		<h3>Thống kê</h3>
+        <div class="panel panel-primary">
+            <div class="panel-body">     
+                <form action="statitis">
+                <div class="row">
+                    <div class="col-md-4 col-12">
+                        <div class="form-group">
+                            <input type="date" class="form-control"  name="ngaybd" placeholder="ngày bắt đầu">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <div class="form-group">
+                            <input type="date" class="form-control" name="ngaykt" placeholder="ngày kết thúc">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <div class="form-group">
+                            <button class="btn btn-success">Tìm</button>
+                        </div>
+                    </div>
+                </div>                    
+                </form>
+                <%
+                    if(request.getAttribute("data")!=null){
+                %>
+                <table class="table table-bordered table-hover" style="margin-top: 20px;">
+                    <thead>
+                        <th>STT</th>
+                        <th>Tên Khách Hàng</th>
+                        <th>Ngày Đặt Phòng</th>
+                        <th>Ngày Trả Phòng</th>
+                    </thead>
+                    <tbody>
+                        <%
+                            int index = 0;
+                            ArrayList<PhongDat> list = (ArrayList<PhongDat>)request.getAttribute("data");
+                            for(PhongDat i:list){
+                        %>
+                        <tr>
+                            <th><%=++index%></th>
+                            <td><%=i.getKh().getHoten()%></td>
+                            <td><%=i.getNgaydat()%></td>
+                            <td><%=i.getNgaytra()%></td>
+                        </tr>
+                        <%}%>
+                    </tbody>
+                </table>
+                    <%}%>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- END -->
     </main>
   </div>

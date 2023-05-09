@@ -3,8 +3,10 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import model.PhongDat;
+import java.util.ArrayList;
 
-public final class trangchu_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class pay_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -44,10 +46,12 @@ public final class trangchu_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("<head>\n");
-      out.write("  <title>Quan lý khách sạn</title>\n");
+      out.write("  <title>Quản lý khách sạn</title>\n");
       out.write("  <meta charset=\"utf-8\">\n");
       out.write("  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n");
       out.write("  <link rel=\"icon\" type=\"image/png\" href=\"https://gokisoft.com/uploads/2021/03/s-568-ico-web.jpg\" />\n");
@@ -132,7 +136,7 @@ public final class trangchu_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </a>\n");
       out.write("          </li>\n");
       out.write("          <li class=\"nav-item\">\n");
-      out.write("            <a class=\"nav-link\" href=\"statitis\">\n");
+      out.write("            <a class=\"nav-link\" href=\"statitis.jsp\">\n");
       out.write("              <i class=\"bi bi-file-earmark-text-fill\"></i>\n");
       out.write("              Quản lý thống kê\n");
       out.write("            </a>\n");
@@ -143,12 +147,96 @@ public final class trangchu_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("    <main role=\"main\" class=\"col-md-9 ml-sm-auto col-lg-10 px-4\">\n");
       out.write("    <!-- hien thi tung chuc nang cua trang quan tri START-->\n");
+      out.write("         <div class=\"row\" style=\"margin-top: 20px;\">\n");
+      out.write("\t<div class=\"col-md-12  table-responsive\">\n");
+      out.write("\t\t<h3>Danh sách hợp đồng</h3>\n");
+      out.write("                \n");
+      out.write("        <a href=\"taohd\"><button class=\"btn btn-success\">Tạo Hợp Đồng</button></a>\n");
+      out.write("\n");
+      out.write("        <table class=\"table table-bordered table-hover\" \n");
+      out.write("            style=\"margin-top: 20px;\">\n");
+      out.write("            <thead>\n");
+      out.write("                <th>STT</th>\n");
+      out.write("                <th>Tên Khách Hàng</th>\n");
+      out.write("                <th>Số Người Ở</th>\n");
+      out.write("                <th>Ngày Đặt</th>\n");
+      out.write("                <th>Ngày Trả</th>\n");
+      out.write("                <th></th>\n");
+      out.write("            </thead>\n");
+      out.write("            <tbody>\n");
+      out.write("            ");
+ 
+                  int index = 0;
+                  ArrayList<PhongDat> list = (ArrayList<PhongDat>) request.getAttribute("dulieu") ;
+                  for(PhongDat i:list){
+            
+      out.write("\n");
+      out.write("                <tr>\n");
+      out.write("                    <th><a href=\"detailpay?id=");
+      out.print( i.getId());
+      out.write('"');
+      out.write('>');
+      out.print((++index));
+      out.write("</a></th>\n");
+      out.write("                    <td><a href=\"detailpay?id=");
+      out.print( i.getId());
+      out.write('"');
+      out.write('>');
+      out.print( i.getKh().getHoten());
+      out.write("</a></td>\n");
+      out.write("                    <td><a href=\"detailpay?id=");
+      out.print( i.getId());
+      out.write('"');
+      out.write('>');
+      out.print( i.getSongaythuco());
+      out.write("</a></td>\n");
+      out.write("                    <td><a href=\"detailpay?id=");
+      out.print( i.getId());
+      out.write('"');
+      out.write('>');
+      out.print( i.getNgaydat());
+      out.write("</a></td>\n");
+      out.write("                    <td><a href=\"detailpay?id=");
+      out.print( i.getId());
+      out.write('"');
+      out.write('>');
+      out.print( i.getNgaytra());
+      out.write("</a></td> \n");
+      out.write("                    <th>\n");
+      out.write("                        ");
+
+                            if(i.getStatus()==1){
+                        
+      out.write("\n");
+      out.write("                        <label class=\"btn btn-danger\">Đã thanh toán</label>\n");
+      out.write("                        ");
+
+                            }else{
+                        
+      out.write("\n");
+      out.write("                        <label class=\"btn btn-danger\">Chưa thanh toán</label>\n");
+      out.write("                        ");
+
+                            }
+                        
+      out.write("\n");
+      out.write("                    </th>\n");
+      out.write("                </tr>\n");
+      out.write("            ");
+
+                }
+            
+      out.write("\n");
+      out.write("            </tbody>\n");
+      out.write("        </table>\n");
+      out.write("\t</div>\n");
+      out.write("</div>\n");
       out.write("    <!-- END -->\n");
       out.write("    </main>\n");
       out.write("  </div>\n");
       out.write("</div>\n");
       out.write("</body>\n");
-      out.write("</html>");
+      out.write("</html");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

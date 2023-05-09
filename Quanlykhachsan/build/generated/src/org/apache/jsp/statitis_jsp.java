@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class trangchu_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class statitis_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -143,6 +143,34 @@ public final class trangchu_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("    <main role=\"main\" class=\"col-md-9 ml-sm-auto col-lg-10 px-4\">\n");
       out.write("    <!-- hien thi tung chuc nang cua trang quan tri START-->\n");
+      out.write("    <div class=\"row\" style=\"margin-top: 20px;\">\n");
+      out.write("\t<div class=\"col-md-12  table-responsive\">\n");
+      out.write("\t\t<h3>Thống kê</h3>\n");
+      out.write("        <div class=\"panel panel-primary\">\n");
+      out.write("            <div class=\"panel-body\">     \n");
+      out.write("                <form action=\"\">\n");
+      out.write("                <div class=\"row\">\n");
+      out.write("                    <div class=\"col-md-4 col-12\">\n");
+      out.write("                        <div class=\"form-group\">\n");
+      out.write("                            <input type=\"date\" class=\"form-control\"  name=\"ngaydat\">\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                    <div class=\"col-md-4 col-12\">\n");
+      out.write("                        <div class=\"form-group\">\n");
+      out.write("                            <label for=\"usr\"> Ngày Kết Thúc:<input type=\"date\" class=\"form-control\" name=\"ngaytra\"></label>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                    <div class=\"col-md-4 col-12\">\n");
+      out.write("                        <div class=\"form-group\">\n");
+      out.write("                            <button class=\"btn btn-success\">Tìm</button>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("                </form>\n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
+      out.write("    </div>\n");
+      out.write("</div>\n");
       out.write("    <!-- END -->\n");
       out.write("    </main>\n");
       out.write("  </div>\n");

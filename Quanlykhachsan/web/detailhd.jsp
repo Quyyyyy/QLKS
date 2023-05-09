@@ -96,7 +96,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="statitis">
+            <a class="nav-link" href="statitis.jsp">
               <i class="bi bi-file-earmark-text-fill"></i>
               Quản lý thống kê
             </a>
@@ -133,7 +133,7 @@
                     <div class="col-md-5 col-12">
                         <div class="form-group">
                             <label for="discount">Tên Khách Hàng:</label>
-                            <select class="form-control" name="id" id="loaiphong" required="true">
+                            <select class="form-control" name="idkh" id="loaiphong" required="true">
                           <option>-- Chọn --</option>
                           <%
                             ArrayList<KhachHang> l = (ArrayList<KhachHang>)request.getAttribute("data");

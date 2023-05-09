@@ -4,27 +4,23 @@
  */
 package view;
 
-import controler.KhachHangDAO;
 import controler.PhongdatDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.KhachHang;
 import model.PhongDat;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "DetailHdServlet", urlPatterns = {"/detail"})
-public class DetailHdServlet extends HttpServlet {
+@WebServlet(name = "StatitisServlet", urlPatterns = {"/statitis"})
+public class StatitisServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +39,10 @@ public class DetailHdServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DetailHdServlet</title>");            
+            out.println("<title>Servlet StatitisServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DetailHdServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet StatitisServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,18 +60,13 @@ public class DetailHdServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id_raw = request.getParameter("id");
-        try{
-            int id = Integer.parseInt(id_raw);
-            PhongdatDAO p = new PhongdatDAO();
-            PhongDat v = p.layTheoId(id);
-            request.setAttribute("data1", v); 
-            KhachHangDAO k = new KhachHangDAO();
-            ArrayList<KhachHang> d = k.layTatCa();
-            request.setAttribute("data", d);
-            request.getRequestDispatcher("detailhd.jsp").forward(request, response); 
-        } catch(NumberFormatException e){
-            System.out.println(e);
+        String ngaybd = request.getParameter("ngaybd");
+        String ngaykt = request.getParameter("ngaykt");
+        if(ngaybd!=null && ngaykt!=null){
+             PhongdatDAO pd = new PhongdatDAO();
+             ArrayList<PhongDat> dp = pd.layTheoNgay(ngaybd, ngaykt);
+             request.setAttribute("data", dp);
+             request.getRequestDispatcher("statitis.jsp").forward(request, response); 
         }
     }
 
@@ -90,26 +81,7 @@ public class DetailHdServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8"); 
-        String idpd_raw = request.getParameter("id");
-        String id_raw = request.getParameter("idkh");
-        String ngaydat = request.getParameter("ngaydat");
-        String ngaytra = request.getParameter("ngaytra");
-        String songuoio = request.getParameter("songuoio");
-        try{
-            int idpd = Integer.parseInt(idpd_raw);
-            int id = Integer.parseInt(id_raw);
-            int sno = Integer.parseInt(songuoio);
-            SimpleDateFormat df = new SimpleDateFormat("mm:HH dd/MM/yyyy");
-            KhachHangDAO k = new KhachHangDAO();
-            KhachHang d = k.layTheoId(id);
-            PhongdatDAO pd = new PhongdatDAO();
-            PhongDat p = new PhongDat(idpd,d,ngaydat,ngaytra,sno,df.format(new Date()),df.format(new Date()),0);
-            pd.update(p); 
-            response.sendRedirect("book");
-        } catch(NumberFormatException e){
-            System.out.println(e);
-        }
+        processRequest(request, response);
     }
 
     /**

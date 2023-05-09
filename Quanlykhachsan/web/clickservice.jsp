@@ -98,7 +98,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="statitis">
+            <a class="nav-link" href="statitis.jsp">
               <i class="bi bi-file-earmark-text-fill"></i>
               Quản lý thống kê
             </a>

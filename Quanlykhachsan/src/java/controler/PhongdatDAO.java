@@ -85,7 +85,7 @@ public class PhongdatDAO extends DBContext{
     }
     
     public void update(PhongDat pd){
-        String sql = "update datphong set id_kh=?,Ngaydat=?,Ngaytra=?,Songuoio=?,created_at=?,updated_at=?,status=?";
+        String sql = "update datphong set id_kh=?,Ngaydat=?,Ngaytra=?,Songuoio=?,created_at=?,updated_at=?,status=? where id=?";
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, pd.getKh().getId());
@@ -95,7 +95,7 @@ public class PhongdatDAO extends DBContext{
             ps.setString(5, pd.getCreated_at());
             ps.setString(6, pd.getUpdated_at());
             ps.setInt(7, pd.getStatus()); 
-            
+            ps.setInt(8, pd.getId());
             ps.executeUpdate();
         }
         catch(SQLException e){
@@ -116,6 +116,33 @@ public class PhongdatDAO extends DBContext{
         catch(SQLException e){
             System.out.println(e);
         }
+    }
+    
+    public ArrayList<PhongDat> layTheoNgay(String ngaydat,String ngaytra){
+        ArrayList<PhongDat> list = new ArrayList<>();
+        
+        String sql = "select * from datphong where Ngaytra between '"+ngaydat+"' and'"+ngaytra+"'";
+        
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                PhongDat pd = new PhongDat();
+                pd.setId(rs.getInt("id"));
+                KhachHangDAO kh = new KhachHangDAO();
+                pd.setKh(kh.layTheoId(rs.getInt("id_kh")));
+                pd.setNgaydat(rs.getString("Ngaydat"));
+                pd.setNgaytra(rs.getString("Ngaytra"));
+                pd.setSongaythuco(rs.getInt("Songuoio"));
+                pd.setCreated_at(rs.getString("created_at"));
+                pd.setUpdated_at(rs.getString("updated_at"));
+                pd.setStatus(rs.getInt("status")); 
+                list.add(pd);
+            }
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+        return list;
     }
     public static void main(String[] args) {
         PhongdatDAO p = new PhongdatDAO();
